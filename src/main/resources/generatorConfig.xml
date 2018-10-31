@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+		PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+		"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry
+			location="C:\Users\ICL\.m2\repository\mysql\mysql-connector-java\5.1.47\mysql-connector-java-5.1.47.jar"/>
+
+	<context id="mysqlgenerator" targetRuntime="MyBatis3">
+		<!-- 自动生成tostring方法 -->
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+		<!-- 自动生成equals方法和hashcode方法 -->
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+		<!-- 自定义方法 -->
+		<plugin type="org.mybatis.generator.plus.api.MyMapperPlugin">
+			<property name="targetProject" value="../src/main/java"/>
+			<property name="targetPackage" value="com.hwitec.core.dao"/>
+		</plugin>
+		<commentGenerator>
+			<!-- 是否禁止显示日期 true：是 ： false:否 -->
+			<property name="suppressDate" value="false" />
+			<!-- 是否去除自动生成的所有注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="false" />
+			<!-- 是否添加字段注释 true:是 false：否 -->
+			<property name="addRemarkComments" value="true" />
+			<!-- 自定义属性 作者名称 -->
+			<property name="author" value="ICL" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+						connectionURL="jdbc:mysql://118.24.16.110:3306/hwitec"
+						userId="root"
+						password="root"/>
+
+
+		<!-- 指定javaBean生成的位置 -->
+		<javaModelGenerator targetPackage="com.hwitec.core.domain" targetProject="src/main/java">
+			<!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+			<property name="enableSubPackages" value="true"/>
+			<!-- 设置是否在getter方法中，对String类型字段调用trim()方法 -->
+			<property name="trimStrings" value="true"/>
+			<property name="rootClass" value="org.common.domain.DataEntity"/>
+		</javaModelGenerator>
+
+
+
+		<!--指定sql映射文件生成的位置 -->
+		<sqlMapGenerator targetPackage="com.hwitec.core.dao" targetProject="src/main/resources">
+			<property name="enableSubPackages" value="true"/>
+		</sqlMapGenerator>
+
+		<!-- 指定dao接口生成的位置，mapper接口 -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.hwitec.core.dao" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true"/>
+			<property name="rootInterface" value="org.common.dao.CurdDao"/>
+		</javaClientGenerator>
+
+
+		<!-- table表生成对应的DoaminObject -->
+		<!--<table tableName="sys_role" domainObjectName="Role" enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false"-->
+		<!--selectByExampleQueryId="false">-->
+
+		<!--</table>-->
+		<!--<table tableName="sys_menu" domainObjectName="Menu"  enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false"-->
+		<!--selectByExampleQueryId="false"></table>-->
+		<!--<table tableName="sys_user" domainObjectName="User"  enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false"-->
+		<!--selectByExampleQueryId="false"></table>-->
+		<!--<table tableName="sys_log" domainObjectName="Log"  enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false"-->
+		<!--selectByExampleQueryId="false"></table>-->
+		<table tableName="sys_company" domainObjectName="Company" enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false"></table>
+		<table tableName="sys_log" domainObjectName="Log" enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false"></table>
+		<table tableName="sys_module" domainObjectName="Module" enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false"></table>
+
+	</context>
+
+</generatorConfiguration>
