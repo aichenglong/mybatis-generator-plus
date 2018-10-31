@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.common:java-common:1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/common/java-common/1.0-SNAPSHOT/java-common-1.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/common/java-common/1.0-SNAPSHOT/java-common-1.0-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/common/java-common/1.0-SNAPSHOT/java-common-1.0-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
