@@ -73,15 +73,20 @@
 		<!--<table tableName="sys_log" domainObjectName="Log"  enableCountByExample="false" enableUpdateByExample="false"-->
 		<!--enableDeleteByExample="false" enableSelectByExample="false"-->
 		<!--selectByExampleQueryId="false"></table>-->
-		<table tableName="sys_company" domainObjectName="Company" enableCountByExample="false" enableUpdateByExample="false"
+
+		<table tableName="sys_role" domainObjectName="Role" enableCountByExample="false" enableUpdateByExample="false"
 			   enableDeleteByExample="false" enableSelectByExample="false"
 			   selectByExampleQueryId="false"></table>
-		<table tableName="sys_log" domainObjectName="Log" enableCountByExample="false" enableUpdateByExample="false"
+		<table tableName="sys_menu" domainObjectName="Menu" enableCountByExample="false" enableUpdateByExample="false"
 			   enableDeleteByExample="false" enableSelectByExample="false"
 			   selectByExampleQueryId="false"></table>
 		<table tableName="sys_module" domainObjectName="Module" enableCountByExample="false" enableUpdateByExample="false"
 			   enableDeleteByExample="false" enableSelectByExample="false"
 			   selectByExampleQueryId="false"></table>
+		<table tableName="sys_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false"></table>
+
 
 	</context>
 
