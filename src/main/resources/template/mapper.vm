@@ -1,0 +1,10 @@
+package ${mapperUrl};
+
+
+import org.apache.ibatis.annotations.Mapper;
+import org.common.dao.CurdDao;
+
+@Mapper
+public interface ${name}Mapper   extends CurdDao {
+
+}

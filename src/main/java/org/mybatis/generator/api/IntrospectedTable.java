@@ -43,9 +43,9 @@ import org.mybatis.generator.internal.rules.Rules;
  * Base class for all code generator implementations. This class provides many
  * of the housekeeping methods needed to implement a code generator, with only
  * the actual code generation methods left unimplemented.
- * 
+ *
  * @author Jeff Butler
- * 
+ *
  */
 public abstract class IntrospectedTable {
 
@@ -209,7 +209,7 @@ public abstract class IntrospectedTable {
     /**
      * Returns true if any of the columns in the table are JDBC Dates (as
      * opposed to timestamps).
-     * 
+     *
      * @return true if the table contains DATE columns
      */
     public boolean hasJDBCDateColumns() {
@@ -237,7 +237,7 @@ public abstract class IntrospectedTable {
     /**
      * Returns true if any of the columns in the table are JDBC Times (as
      * opposed to timestamps).
-     * 
+     *
      * @return true if the table contains TIME columns
      */
     public boolean hasJDBCTimeColumns() {
@@ -266,7 +266,7 @@ public abstract class IntrospectedTable {
      * Returns the columns in the primary key. If the generatePrimaryKeyClass()
      * method returns false, then these columns will be iterated as the
      * parameters of the selectByPrimaryKay and deleteByPrimaryKey methods
-     * 
+     *
      * @return a List of ColumnDefinition objects for columns in the primary key
      */
     public List<IntrospectedColumn> getPrimaryKeyColumns() {
@@ -458,9 +458,9 @@ public abstract class IntrospectedTable {
     }
 
     public void initialize() {
-        calculateJavaClientAttributes();
-        calculateModelAttributes();
-        calculateXmlAttributes();
+        calculateJavaClientAttributes();  //Mapper
+        calculateModelAttributes(); //Model
+        calculateXmlAttributes();   //XML
 
         if (tableConfiguration.getModelType() == ModelType.HIERARCHICAL) {
             rules = new HierarchicalModelRules(this);
@@ -792,7 +792,7 @@ public abstract class IntrospectedTable {
             sb.append("SqlProvider"); //$NON-NLS-1$
         }
         setMyBatis3SqlProviderType(sb.toString());
-        
+
         sb.setLength(0);
         sb.append(calculateJavaClientInterfacePackage());
         sb.append('.');
@@ -855,7 +855,7 @@ public abstract class IntrospectedTable {
         if (!stringHasValue(exampleTargetPackage)) {
             return calculateJavaModelPackage();
         }
-        
+
         StringBuilder sb = new StringBuilder();
         sb.append(exampleTargetPackage);
         sb.append(fullyQualifiedTable.getSubPackageForModel(isSubPackagesEnabled(config)));
@@ -866,7 +866,7 @@ public abstract class IntrospectedTable {
         StringBuilder sb = new StringBuilder();
         SqlMapGeneratorConfiguration config = context
                 .getSqlMapGeneratorConfiguration();
-        
+
         // config can be null if the Java client does not require XML
         if (config != null) {
             sb.append(config.getTargetPackage());
@@ -936,7 +936,7 @@ public abstract class IntrospectedTable {
 
     /**
      * This method can be used to initialize the generators before they will be called.
-     * 
+     *
      * <p>This method is called after all the setX methods, but before getNumberOfSubtasks(), getGeneratedJavaFiles, and
      * getGeneratedXmlFiles.
      *
@@ -952,7 +952,7 @@ public abstract class IntrospectedTable {
      * This method should return a list of generated Java files related to this
      * table. This list could include various types of model classes, as well as
      * DAO classes.
-     * 
+     *
      * @return the list of generated Java files for this table
      */
     public abstract List<GeneratedJavaFile> getGeneratedJavaFiles();
@@ -961,7 +961,7 @@ public abstract class IntrospectedTable {
      * This method should return a list of generated XML files related to this
      * table. Most implementations will only return one file - the generated
      * SqlMap file.
-     * 
+     *
      * @return the list of generated XML files for this table
      */
     public abstract List<GeneratedXmlFile> getGeneratedXmlFiles();
@@ -969,7 +969,7 @@ public abstract class IntrospectedTable {
     /**
      * This method should return the number of progress messages that will be
      * send during the generation phase.
-     * 
+     *
      * @return the number of progress messages
      */
     public abstract int getGenerationSteps();
@@ -1072,19 +1072,19 @@ public abstract class IntrospectedTable {
                 InternalAttribute.ATTR_MYBATIS3_SQL_PROVIDER_TYPE,
                 mybatis3SqlProviderType);
     }
-    
+
     public String getMyBatisDynamicSqlSupportType() {
         return internalAttributes.get(InternalAttribute.ATTR_MYBATIS_DYNAMIC_SQL_SUPPORT_TYPE);
     }
-    
+
     public void setMyBatisDynamicSqlSupportType(String s) {
         internalAttributes.put(InternalAttribute.ATTR_MYBATIS_DYNAMIC_SQL_SUPPORT_TYPE, s);
     }
-    
+
     public TargetRuntime getTargetRuntime() {
         return targetRuntime;
     }
-    
+
     public boolean isImmutable() {
         Properties properties;
 

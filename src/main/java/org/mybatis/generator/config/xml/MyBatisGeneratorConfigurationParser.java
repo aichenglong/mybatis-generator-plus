@@ -205,8 +205,38 @@ public class MyBatisGeneratorConfigurationParser {
                 parseSqlMapGenerator(context, childNode);
             } else if ("javaClientGenerator".equals(childNode.getNodeName())) { //$NON-NLS-1$
                 parseJavaClientGenerator(context, childNode);
+            }else if ("javaParam".equals(childNode.getNodeName())) { // 新增自定义参数填充分支
+                parseJavaParam(context, childNode);
             } else if ("table".equals(childNode.getNodeName())) { //$NON-NLS-1$
                 parseTable(context, childNode);
+            }
+        }
+    }
+
+    private void parseJavaParam(Context context, Node node) { // 自定义填充xml参数方法
+        JavaParamConfiguration javaParamConfiguration = new JavaParamConfiguration();
+
+        context.setJavaParamConfiguration(javaParamConfiguration);
+
+        Properties attributes = parseAttributes(node);
+        String baseDAO = attributes.getProperty("baseDAO"); //$NON-NLS-1$
+        String baseService = attributes.getProperty("baseService"); //$NON-NLS-1$
+        String buildType = attributes.getProperty("buildType"); //$NON-NLS-1$
+
+        javaParamConfiguration.setBaseDAO(baseDAO);
+        javaParamConfiguration.setBaseService(baseService);
+        javaParamConfiguration.setBuildType(buildType);
+
+        NodeList nodeList = node.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node childNode = nodeList.item(i);
+
+            if (childNode.getNodeType() != Node.ELEMENT_NODE) {
+                continue;
+            }
+
+            if ("property".equals(childNode.getNodeName())) { //$NON-NLS-1$
+                parseProperty(javaParamConfiguration, childNode);
             }
         }
     }

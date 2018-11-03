@@ -4,16 +4,13 @@ package org.mybatis.generator.plus.api;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 import static org.mybatis.generator.internal.util.messages.Messages.getString;
 
-import org.mybatis.generator.api.GeneratedJavaFile;
-import org.mybatis.generator.api.IntrospectedTable;
-import org.mybatis.generator.api.JavaFormatter;
-import org.mybatis.generator.api.PluginAdapter;
-import org.mybatis.generator.api.ShellCallback;
+import org.mybatis.generator.api.*;
 import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.Document;
@@ -171,5 +168,134 @@ public class MyMapperPlugin extends PluginAdapter {
 //        methodGenerator.setIntrospectedTable(introspectedTable);
 //        methodGenerator.addInterfaceElements(interfaze);
         return super.clientGenerated(interfaze, introspectedTable);
+    }
+
+    @Override
+    public boolean clientBasicCountMethodGenerated(Method method, Interface interfaze,
+                                                   IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientBasicDeleteMethodGenerated(Method method, Interface interfaze,
+                                                    IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientBasicInsertMethodGenerated(Method method, Interface interfaze,
+                                                    IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientBasicSelectManyMethodGenerated(Method method, Interface interfaze,
+                                                        IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientBasicSelectOneMethodGenerated(Method method, Interface interfaze,
+                                                       IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientBasicUpdateMethodGenerated(Method method, Interface interfaze,
+                                                    IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientCountByExampleMethodGenerated(Method method,
+                                                       Interface interfaze, IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientDeleteByExampleMethodGenerated(Method method,
+                                                        Interface interfaze, IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientDeleteByPrimaryKeyMethodGenerated(Method method,
+                                                           Interface interfaze, IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientInsertMethodGenerated(Method method, Interface interfaze,
+                                               IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+  
+
+    @Override
+    public boolean clientSelectByExampleWithBLOBsMethodGenerated(Method method,
+                                                                 Interface interfaze, IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientSelectByExampleWithoutBLOBsMethodGenerated(Method method,
+                                                                    Interface interfaze, IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientSelectByPrimaryKeyMethodGenerated(Method method,
+                                                           Interface interfaze, IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientUpdateByExampleSelectiveMethodGenerated(Method method,
+                                                                 Interface interfaze, IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientUpdateByExampleWithBLOBsMethodGenerated(Method method,
+                                                                 Interface interfaze, IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientUpdateByExampleWithoutBLOBsMethodGenerated(Method method,
+                                                                    Interface interfaze, IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientUpdateByPrimaryKeySelectiveMethodGenerated(Method method,
+                                                                    Interface interfaze, IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientUpdateByPrimaryKeyWithBLOBsMethodGenerated(Method method,
+                                                                    Interface interfaze, IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientUpdateByPrimaryKeyWithoutBLOBsMethodGenerated(
+            Method method, Interface interfaze,
+            IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+
+    @Override
+    public boolean clientInsertSelectiveMethodGenerated(Method method,
+                                                        Interface interfaze, IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public void setProperties(Properties properties) {
+        super.setProperties(properties);
     }
 }

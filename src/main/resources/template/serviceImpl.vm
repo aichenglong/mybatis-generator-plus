@@ -1,0 +1,21 @@
+package ${serviceImplUrl};
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.common.dao.CurdDao;
+import org.common.service.impl.AbstractCurdService;
+import ${url};
+import ${serviceUrl}.${name}Service;
+import ${mapperUrl}.${name}Mapper;
+
+@Service
+public class ${name}ServiceImpl  extends AbstractCurdService<${name},String> implements ${name}Service<${name},String> {
+
+    @Autowired
+    private ${name}Mapper mapper;
+    @Override
+    public CurdDao<${name}, String> getCurdDao() {
+        return mapper;
+    }
+}

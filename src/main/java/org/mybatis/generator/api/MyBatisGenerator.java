@@ -29,10 +29,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.mybatis.generator.codegen.JavaServiceGenerator;
 import org.mybatis.generator.codegen.RootClassInfo;
+import org.mybatis.generator.codegen.freemarker.TemplateEntity.ServiceTemplateEntity;
 import org.mybatis.generator.config.Configuration;
 import org.mybatis.generator.config.Context;
 import org.mybatis.generator.config.MergeConstants;
+import org.mybatis.generator.config.TableConfiguration;
+import org.mybatis.generator.config.xml.JavaParamConfiguration;
 import org.mybatis.generator.exception.InvalidConfigurationException;
 import org.mybatis.generator.exception.ShellException;
 import org.mybatis.generator.internal.DefaultShellCallback;
@@ -42,7 +46,7 @@ import org.mybatis.generator.internal.XmlFileMergerJaxp;
 
 /**
  * This class is the main interface to MyBatis generator. A typical execution of the tool involves these steps:
- * 
+ *
  * <ol>
  * <li>Create a Configuration object. The Configuration can be the result of a parsing the XML configuration file, or it
  * can be created solely in Java.</li>
@@ -75,7 +79,7 @@ public class MyBatisGenerator {
 
     /**
      * Constructs a MyBatisGenerator object.
-     * 
+     *
      * @param configuration
      *            The configuration for this invocation
      * @param shellCallback
@@ -137,8 +141,44 @@ public class MyBatisGenerator {
     public void generate(ProgressCallback callback) throws SQLException,
             IOException, InterruptedException {
         generate(callback, null, null, true);
+//        JavaServiceGenerator.addJavaServiceGenerator(assignmentServiceTemplateEntity());
     }
 
+
+    public List<String> assignmentServiceTemplateEntity(){
+        List<Context> contexts = configuration.getContexts();
+        List<ServiceTemplateEntity> serviceTemplateEntities = new ArrayList<>();
+        boolean flag;
+        for (Context c:contexts){
+            JavaParamConfiguration jgc = c.getJavaParamConfiguration();
+            List<TableConfiguration> tableConfigurations = c.getTableConfigurations();
+            for (TableConfiguration t:tableConfigurations){
+                flag = false;
+                for (GeneratedJavaFile gjf : generatedJavaFiles) {
+                    if (gjf.getFileName().contains("WithBLOBs")&& gjf.getFileName().contains(t.getDomainObjectName())) {
+                        flag = true;
+                        break;
+                    }
+                }
+//                String domainObjectName = this.getDomainObjectName(t);
+//                ServiceTemplateEntity serviceTemplateEntity = new ServiceTemplateEntity();
+//                serviceTemplateEntity.setClassName(domainObjectName+"Service");
+//                String projectTargetPackage = jgc.getTargetProject()+"/"+jgc.getTargetPackage().replaceAll("\\.","/")+"/";
+//                serviceTemplateEntity.setProjectTargetPackage(projectTargetPackage);
+//                serviceTemplateEntity.setTemplatePackage(jgc.getTargetPackage());
+//                serviceTemplateEntity.setMapperType(domainObjectName+"Mapper");
+//                serviceTemplateEntity.setMapperName(Character.toLowerCase(domainObjectName.charAt(0)) + domainObjectName.substring(1)+"Mapper");
+//                serviceTemplateEntity.setModelClazz(domainObjectName);
+//                serviceTemplateEntity.setMapperPackage(c.getJavaClientGeneratorConfiguration().getTargetPackage()+"."+domainObjectName+"Mapper");
+//                serviceTemplateEntity.setModelPackage(c.getJavaModelGeneratorConfiguration().getTargetPackage()+"."+domainObjectName);
+//                serviceTemplateEntity.setColumnsHasBLOB(flag);
+//                serviceTemplateEntities.add(serviceTemplateEntity);
+            }
+        }
+
+        return null;
+
+    }
     /**
      * This is the main method for generating code. This method is long running, but progress can be provided and the
      * method can be canceled through the ProgressCallback interface.
@@ -269,6 +309,27 @@ public class MyBatisGenerator {
             context.generateFiles(callback, generatedJavaFiles,
                     generatedXmlFiles, warnings);
         }
+
+        /**
+         * 如果JavaServiceGeneratorConfiguration存在则调用相关方法
+         * 如果JavaDomainGeneratorConfiguration存在则调用相关方法
+         */
+
+        for (Context c:configuration.getContexts()) {
+            if(c.getJavaParamConfiguration()!=null){
+//                JavaServiceGenerator.addJavaServiceGenerator(assignmentServiceTemplateEntity());
+            }
+
+//            if (c.getJavaServiceGeneratorConfiguration() != null) {
+//
+//                JavaServiceGenerator.addJavaServiceGenerator(assignmentServiceTemplateEntity());
+//            }
+//
+//            if (c.getJavaDomainGeneratorConfiguration() != null) {
+//                JavaDomainGenerator.addJavaDomainGenerator(assignmentDomainTemplateEntity());
+//            }
+        }
+
 
         // now save the files
         if (writeFiles) {

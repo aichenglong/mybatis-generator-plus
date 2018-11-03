@@ -1,0 +1,9 @@
+package ${serviceUrl};
+
+import org.common.domain.DataEntity;
+import org.common.service.CurdService;
+
+
+public interface ${name}Service <${name} extends DataEntity,String> extends CurdService<${name}, java.lang.String> {
+
+}

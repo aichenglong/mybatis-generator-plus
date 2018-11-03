@@ -36,6 +36,7 @@ import org.mybatis.generator.api.JavaTypeResolver;
 import org.mybatis.generator.api.Plugin;
 import org.mybatis.generator.api.ProgressCallback;
 import org.mybatis.generator.api.XmlFormatter;
+import org.mybatis.generator.config.xml.JavaParamConfiguration;
 import org.mybatis.generator.internal.JDBCConnectionFactory;
 import org.mybatis.generator.internal.ObjectFactory;
 import org.mybatis.generator.internal.PluginAggregator;
@@ -125,6 +126,19 @@ public class Context extends PropertyHolder {
     public void addPluginConfiguration(
             PluginConfiguration pluginConfiguration) {
         pluginConfigurations.add(pluginConfiguration);
+    }
+    /**
+     * 自定义配置参数
+     */
+    private JavaParamConfiguration javaParamConfiguration;
+
+    public JavaParamConfiguration getJavaParamConfiguration() {
+        return javaParamConfiguration;
+    }
+
+    public void setJavaParamConfiguration(JavaParamConfiguration javaParamConfiguration) {
+        this.javaParamConfiguration = javaParamConfiguration;
+
     }
 
     /**
